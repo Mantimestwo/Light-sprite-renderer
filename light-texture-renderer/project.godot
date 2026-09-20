@@ -10,19 +10,21 @@ config_version=5
 
 [application]
 
-config/name="Light texture renderer"
+config/name="Light sprite renderer"
+config/version="1.0"
+run/main_scene="uid://bdgta8j2q0mxw"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
+boot_splash/use_filter=false
 config/icon="uid://1kupc6htbu1g"
 
 [display]
 
 window/size/viewport_width=1100
 window/size/viewport_height=580
-window/size/resizable=false
+window/size/sharp_corners=true
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 window/defaults/default_clear_color=Color(0, 0, 0, 1)
 
 [dotnet]

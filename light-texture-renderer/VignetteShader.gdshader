@@ -11,6 +11,7 @@ uniform float feathering : hint_range(1.01, 6.0, 0.01) = 1.01;
 uniform float size : hint_range(0.0, 1.0, 0.01) = 0.5;
 uniform sampler2D noiseTex : filter_nearest, repeat_enable;
 uniform float spriteResolution : hint_range(8, 512, 4) = 16;
+uniform int noiseResolution = 16;
 
 uniform int quantCount = 2;
 
@@ -46,7 +47,7 @@ float in_cooldown(vec2 uv, float direction, float shifter) {
 void fragment() {
 	vec2 pixelated_uv = vec2(calculateColor(UV.x, spriteResolution),calculateColor(UV.y, spriteResolution));
 
-	float noiseScale =  spriteResolution / 16.0;
+	float noiseScale =  spriteResolution / float(noiseResolution);
 
 	vec4 noise = texture(noiseTex,noiseScale * vec2(calculateColor(UV.x, spriteResolution),calculateColor(UV.y, spriteResolution)));
 	float pixelShifter =  1.0 / float(spriteResolution) / 2.0 * usePixelShift;

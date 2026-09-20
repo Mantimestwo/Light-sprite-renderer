@@ -26,6 +26,7 @@ shader_parameter/feathering = 2.00999996811126
 shader_parameter/size = 0.499999988824
 shader_parameter/noiseTex = ExtResource("2_1bvp3")
 shader_parameter/spriteResolution = 32.0
+shader_parameter/noiseResolution = 16
 shader_parameter/quantCount = 4
 shader_parameter/powerFactor = 2.0
 shader_parameter/colorSqueezer = 0.8000000373014801
@@ -36,8 +37,11 @@ MarginContainer/constants/margin_left = 0
 MarginContainer/constants/margin_right = 0
 MarginContainer/constants/margin_top = 31
 
+[sub_resource type="Theme" id="Theme_23v3e"]
+default_font_size = 12
+
 [sub_resource type="LabelSettings" id="LabelSettings_f4ic3"]
-font_size = 20
+font_size = 15
 
 [node name="Tree" type="Node2D" unique_id=1160343218 node_paths=PackedStringArray("saveButton", "settingsResetButton", "resSlider", "ditherSlider", "colorCountSlider", "sizeSlider", "featherSlider", "alphaSlider", "powerSlider", "openAngleSlider", "rotateSlider", "debugLabel", "subview", "lightSprite", "renderer", "savePath", "saveName", "presetSaveButton", "presetSelectionButton", "overwriteConfirmation", "overwriteConfirmationLabel", "presetSaveConfirmation", "presetNameField", "presetAcceptSaveButton", "currentFrameSlider", "frameCountSlider")]
 script = ExtResource("1_1bvp3")
@@ -319,9 +323,9 @@ offset_bottom = 70.0
 [node name="Path" type="LineEdit" parent="CanvasLayer/Names" unique_id=525475859]
 layout_mode = 0
 offset_top = 32.000008
-offset_right = 709.0103
-offset_bottom = 63.000008
-scale = Vector2(0.677, 0.677)
+offset_right = 480.0
+offset_bottom = 56.000008
+theme = SubResource("Theme_23v3e")
 placeholder_text = "..."
 clear_button_enabled = true
 
@@ -330,10 +334,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -122.0
-offset_top = -32.411316
+offset_left = -40.0
+offset_top = -12.588692
 offset_right = -6.0
-offset_bottom = 32.411316
+offset_bottom = 9.411308
 grow_vertical = 2
 text = "Path"
 label_settings = SubResource("LabelSettings_f4ic3")
