@@ -1,0 +1,414 @@
+[gd_scene format=3 uid="uid://bdgta8j2q0mxw"]
+
+[ext_resource type="Script" uid="uid://dgf8rsk1mchfu" path="res://MainController.cs" id="1_1bvp3"]
+[ext_resource type="Shader" uid="uid://bb7btvslgf0en" path="res://VignetteShader.gdshader" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://7srhv60mxint" path="res://bayer_dither_tex.png" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://ksbmab5k3k4c" path="res://unitbox.png" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dnccqax5ooj0l" path="res://SliderTemplate.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://h00o4devmc7r" path="res://floppy.png" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://lk0etv8tc0rb" path="res://reset.png" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://b6hqxas6xc715" path="res://ConfirmationScreen.tscn" id="8_kek77"]
+[ext_resource type="Texture2D" uid="uid://btjgal6dxhu26" path="res://UI/border.png" id="9_4c57u"]
+[ext_resource type="Theme" uid="uid://cj8d6ux5wjm40" path="res://Theme.tres" id="9_efxa6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_65f03"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
+shader = ExtResource("1_h2yge")
+shader_parameter/openAngle = 1.0
+shader_parameter/rotate = 0.0
+shader_parameter/state = 1.0
+shader_parameter/testfloat = 0.0
+shader_parameter/usePixelShift = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/feathering = 2.00999996811126
+shader_parameter/size = 0.499999988824
+shader_parameter/noiseTex = ExtResource("2_1bvp3")
+shader_parameter/spriteResolution = 32.0
+shader_parameter/quantCount = 4
+shader_parameter/powerFactor = 2.0
+shader_parameter/colorSqueezer = 0.8000000373014801
+
+[sub_resource type="Theme" id="Theme_gxh8g"]
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4ic3"]
+font_size = 20
+
+[node name="Tree" type="Node2D" unique_id=1160343218 node_paths=PackedStringArray("saveButton", "settingsResetButton", "resSlider", "ditherSlider", "colorCountSlider", "sizeSlider", "featherSlider", "alphaSlider", "powerSlider", "openAngleSlider", "rotateSlider", "debugLabel", "subview", "lightSprite", "renderer", "savePath", "saveName", "presetSaveButton", "presetSelectionButton", "overwriteConfirmation", "overwriteConfirmationLabel", "presetSaveConfirmation", "presetNameField", "presetAcceptSaveButton", "currentFrameSlider", "frameCountSlider")]
+script = ExtResource("1_1bvp3")
+saveButton = NodePath("CanvasLayer/Save texture button")
+settingsResetButton = NodePath("CanvasLayer/Reset")
+resSlider = NodePath("CanvasLayer/Main sliders/Resolution")
+ditherSlider = NodePath("CanvasLayer/Main sliders/MarginContainer/Dither")
+colorCountSlider = NodePath("CanvasLayer/Main sliders/MarginContainer2/Values")
+sizeSlider = NodePath("CanvasLayer/Main sliders/MarginContainer6/Size")
+featherSlider = NodePath("CanvasLayer/Main sliders/MarginContainer7/Feathering")
+alphaSlider = NodePath("CanvasLayer/Main sliders/MarginContainer8/Alpha")
+powerSlider = NodePath("CanvasLayer/Main sliders/MarginContainer9/Power")
+openAngleSlider = NodePath("CanvasLayer/Main sliders/MarginContainer10/Open angle")
+rotateSlider = NodePath("CanvasLayer/Main sliders/MarginContainer11/Open angle rotation")
+debugLabel = NodePath("CanvasLayer/debug label")
+subview = NodePath("SubViewport")
+lightSprite = NodePath("SubViewport/sprite")
+renderer = NodePath("Node2D/Renderer")
+savePath = NodePath("CanvasLayer/Names/Path")
+saveName = NodePath("CanvasLayer/Names/File name")
+presetSaveButton = NodePath("CanvasLayer/Preset/Preset save button")
+presetSelectionButton = NodePath("CanvasLayer/Preset/Preset selection")
+overwriteConfirmation = NodePath("CanvasLayer/Overwrite confirmation")
+overwriteConfirmationLabel = NodePath("CanvasLayer/Overwrite confirmation/ColorRect/Label")
+presetSaveConfirmation = NodePath("CanvasLayer/Preset save confirmation")
+presetNameField = NodePath("CanvasLayer/Preset save confirmation/ColorRect/Preset name field")
+presetAcceptSaveButton = NodePath("CanvasLayer/Preset save confirmation/ColorRect/HBoxContainer/Accept")
+currentFrameSlider = NodePath("CanvasLayer/Current frame")
+frameCountSlider = NodePath("CanvasLayer/Frame count")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=134091998]
+position = Vector2(278, 291)
+metadata/_edit_group_ = true
+
+[node name="Renderer2" type="Sprite2D" parent="Node2D" unique_id=166498827]
+texture_filter = 1
+scale = Vector2(518, 518)
+texture = ExtResource("3_lquwl")
+
+[node name="Renderer" type="Sprite2D" parent="Node2D" unique_id=568813111]
+texture_filter = 1
+texture = SubResource("ViewportTexture_65f03")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=257758650]
+
+[node name="sprite" type="Sprite2D" parent="SubViewport" unique_id=1395087881]
+material = SubResource("ShaderMaterial_7mycd")
+position = Vector2(256, 256)
+scale = Vector2(512, 512)
+texture = ExtResource("3_lquwl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1722444010]
+
+[node name="Current frame" parent="CanvasLayer" unique_id=35771681 instance=ExtResource("5_lquwl")]
+offset_left = 287.0
+offset_top = 529.0
+offset_right = 528.0
+offset_bottom = 536.0
+min_value = 0.0
+max_value = 0.0
+value = 0.0
+rounded = true
+tick_count = 1
+ticks_position = 3
+SliderName = "Frame"
+
+[node name="Name" parent="CanvasLayer/Current frame" index="1" unique_id=1458399084]
+text = "Frame"
+
+[node name="LineEdit" parent="CanvasLayer/Current frame" index="2" unique_id=1992971735]
+offset_left = -72.3125
+text = "0"
+alignment = 1
+
+[node name="Frame count" parent="CanvasLayer" unique_id=1712247373 instance=ExtResource("5_lquwl")]
+offset_left = 31.0
+offset_top = 529.0
+offset_right = 272.0
+offset_bottom = 536.0
+min_value = 1.0
+max_value = 8.0
+value = 1.0
+rounded = true
+tick_count = 8
+ticks_position = 3
+SliderName = "Total frames"
+
+[node name="Name" parent="CanvasLayer/Frame count" index="1" unique_id=1458399084]
+text = "Total frames"
+
+[node name="LineEdit" parent="CanvasLayer/Frame count" index="2" unique_id=1992971735]
+offset_left = -72.3125
+text = "1"
+alignment = 1
+
+[node name="Main sliders" type="VBoxContainer" parent="CanvasLayer" unique_id=930425686]
+offset_left = 562.0
+offset_top = 153.0
+offset_right = 1083.0
+offset_bottom = 527.0
+
+[node name="Resolution" parent="CanvasLayer/Main sliders" unique_id=1885735395 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 4.0
+step = 4.0
+value = 32.0
+exp_edit = true
+SliderName = "Resolution"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=286686256]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Dither" parent="CanvasLayer/Main sliders/MarginContainer" unique_id=439531322 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.2
+SliderName = "Dither"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=740214379]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Values" parent="CanvasLayer/Main sliders/MarginContainer2" unique_id=1877489508 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 1.0
+max_value = 255.0
+value = 4.0
+exp_edit = true
+SliderName = "Value count"
+
+[node name="MarginContainer8" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=1869898956]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Alpha" parent="CanvasLayer/Main sliders/MarginContainer8" unique_id=1436127746 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+SliderName = "Alpha"
+
+[node name="MarginContainer6" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=1264406841]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Size" parent="CanvasLayer/Main sliders/MarginContainer6" unique_id=728806020 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+SliderName = "Center radius"
+
+[node name="MarginContainer7" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=570465510]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Feathering" parent="CanvasLayer/Main sliders/MarginContainer7" unique_id=1681699788 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 0.0
+max_value = 6.0
+step = 0.05
+value = 1.0
+SliderName = "Feathering"
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=1209929598]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Ratio" parent="CanvasLayer/Main sliders/MarginContainer3" unique_id=1168998423 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+SliderName = "Width-height ratio (non-functional)"
+
+[node name="MarginContainer9" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=1920721581]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Power" parent="CanvasLayer/Main sliders/MarginContainer9" unique_id=1862998791 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 0.4
+max_value = 4.0
+step = 0.1
+value = 2.0
+SliderName = "Power factor"
+
+[node name="MarginContainer10" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=1281449145]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Open angle" parent="CanvasLayer/Main sliders/MarginContainer10" unique_id=980389035 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = 0.0
+max_value = 360.0
+value = 360.0
+SliderName = "Open angle"
+
+[node name="MarginContainer11" type="MarginContainer" parent="CanvasLayer/Main sliders" unique_id=1921947141]
+layout_mode = 2
+theme = SubResource("Theme_gxh8g")
+
+[node name="Open angle rotation" parent="CanvasLayer/Main sliders/MarginContainer11" unique_id=1449975484 instance=ExtResource("5_lquwl")]
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+value = 0.0
+SliderName = "Rotation"
+
+[node name="Save texture button" type="Button" parent="CanvasLayer" unique_id=366949824]
+offset_left = 442.0
+offset_top = 38.0
+offset_right = 530.0
+offset_bottom = 126.0
+icon = ExtResource("6_272bh")
+icon_alignment = 1
+
+[node name="Reset" type="Button" parent="CanvasLayer" unique_id=301351501]
+offset_left = 26.0
+offset_top = 38.0
+offset_right = 114.0
+offset_bottom = 126.0
+icon = ExtResource("7_5vw27")
+icon_alignment = 1
+
+[node name="Preset" type="Control" parent="CanvasLayer" unique_id=500794776]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 534.0
+offset_top = 534.0
+offset_right = 574.0
+offset_bottom = 574.0
+scale = Vector2(0.742, 0.742)
+
+[node name="Preset save button" type="Button" parent="CanvasLayer/Preset" unique_id=370331163]
+layout_mode = 0
+offset_left = 427.22372
+offset_top = -24.258728
+offset_right = 741.23987
+offset_bottom = 16.175232
+text = "Save preset"
+icon_alignment = 1
+
+[node name="Preset selection" type="OptionButton" parent="CanvasLayer/Preset" unique_id=396538460]
+layout_mode = 0
+offset_left = 36.0
+offset_top = -22.91101
+offset_right = 416.44208
+offset_bottom = 15.175232
+fit_to_longest_item = false
+allow_reselect = true
+search_bar_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Preset/Preset selection" unique_id=1781922538]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 2.695418
+offset_right = 223.0
+offset_bottom = 33.69542
+text = "Load preset"
+vertical_alignment = 1
+
+[node name="Names" type="Control" parent="CanvasLayer" unique_id=1723975140]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 604.0
+offset_top = 30.0
+offset_right = 644.0
+offset_bottom = 70.0
+
+[node name="Path" type="LineEdit" parent="CanvasLayer/Names" unique_id=525475859]
+layout_mode = 0
+offset_top = 32.000008
+offset_right = 709.0103
+offset_bottom = 63.000008
+scale = Vector2(0.677, 0.677)
+placeholder_text = "..."
+clear_button_enabled = true
+
+[node name="Value" type="Label" parent="CanvasLayer/Names/Path" unique_id=1382570304]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -32.411316
+offset_right = -6.0
+offset_bottom = 32.411316
+grow_vertical = 2
+text = "Path"
+label_settings = SubResource("LabelSettings_f4ic3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="File name" type="LineEdit" parent="CanvasLayer/Names" unique_id=1420382200]
+layout_mode = 0
+offset_left = -42.0
+offset_right = 480.0
+offset_bottom = 31.0
+placeholder_text = "Filename (Default: \"lightmask_x(resolution)\")"
+clear_button_enabled = true
+
+[node name="debug label" type="RichTextLabel" parent="CanvasLayer" unique_id=541675670]
+modulate = Color(1, 1, 1, 0.3882353)
+offset_left = 562.0
+offset_top = 84.0
+offset_right = 1084.0
+offset_bottom = 124.0
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+text = "(debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) (debug) "
+scroll_active = false
+selection_enabled = true
+
+[node name="Preset save confirmation" parent="CanvasLayer" unique_id=223992012 instance=ExtResource("8_kek77")]
+visible = false
+
+[node name="Label" parent="CanvasLayer/Preset save confirmation/ColorRect" parent_id_path=PackedInt32Array(223992012, 1449904271) index="0" unique_id=1177768976]
+offset_top = -64.0
+offset_bottom = -41.0
+text = "Save preset?"
+
+[node name="Label2" parent="CanvasLayer/Preset save confirmation/ColorRect" parent_id_path=PackedInt32Array(223992012, 1449904271) index="1" unique_id=1574261257]
+visible = false
+
+[node name="Preset name field" type="LineEdit" parent="CanvasLayer/Preset save confirmation/ColorRect" parent_id_path=PackedInt32Array(223992012, 1449904271) index="2" unique_id=1102483040]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -30.0
+offset_right = 172.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_efxa6")
+placeholder_text = "Preset name"
+
+[node name="Accept" parent="CanvasLayer/Preset save confirmation/ColorRect/HBoxContainer" parent_id_path=PackedInt32Array(223992012, 1295982250) index="0" unique_id=1720120222]
+theme_override_colors/font_disabled_color = Color(0.88, 0.396, 0.396, 0.29803923)
+disabled = true
+text = "Save"
+
+[node name="Overwrite confirmation" parent="CanvasLayer" unique_id=401609680 instance=ExtResource("8_kek77")]
+visible = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer" unique_id=2039583121]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_4c57u")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+metadata/_edit_lock_ = true
+
+[editable path="CanvasLayer/Current frame"]
+[editable path="CanvasLayer/Frame count"]
+[editable path="CanvasLayer/Preset save confirmation"]
+[editable path="CanvasLayer/Overwrite confirmation"]

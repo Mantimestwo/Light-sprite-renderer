@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dnccqax5ooj0l"]
+
+[ext_resource type="Script" uid="uid://b7kbirhw1ftlj" path="res://ValueSlider.cs" id="1_f4ic3"]
+[ext_resource type="Texture2D" uid="uid://pk48cl8nyt5n" path="res://UI/checkbox_0.png" id="1_y55ej"]
+[ext_resource type="Texture2D" uid="uid://cg86qioosf85b" path="res://UI/checkbox_2.png" id="2_m7hvt"]
+[ext_resource type="Texture2D" uid="uid://b2g7l61eunem" path="res://UI/checkbox_6.png" id="3_rw1pw"]
+[ext_resource type="Texture2D" uid="uid://cy12yn5wlilbs" path="res://UI/checkbox_7.png" id="4_4q3wk"]
+[ext_resource type="Texture2D" uid="uid://bea5wbmur4lk8" path="res://UI/checkbox_5.png" id="5_stem0"]
+[ext_resource type="Theme" uid="uid://cj8d6ux5wjm40" path="res://Theme.tres" id="7_rw1pw"]
+[ext_resource type="Script" uid="uid://ch02ytghs0bhx" path="res://NumberFieldEdit.cs" id="9_4q3wk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_npncb"]
+texture = ExtResource("3_rw1pw")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7hvt"]
+texture = ExtResource("4_4q3wk")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2dkft"]
+texture = ExtResource("5_stem0")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="Theme" id="Theme_f4ic3"]
+HSlider/icons/grabber = ExtResource("1_y55ej")
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = ExtResource("2_m7hvt")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_npncb")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_m7hvt")
+HSlider/styles/slider = SubResource("StyleBoxTexture_2dkft")
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4ic3"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_d0pb3"]
+font_size = 15
+
+[node name="Slider" type="HSlider" unique_id=1885735395 node_paths=PackedStringArray("valuePrint", "valueField", "nameLabel")]
+offset_right = 339.0
+offset_bottom = 7.0
+theme = SubResource("Theme_f4ic3")
+min_value = 8.0
+max_value = 512.0
+value = 256.0
+script = ExtResource("1_f4ic3")
+SliderName = "Name"
+valuePrint = NodePath("Value")
+valueField = NodePath("LineEdit")
+nameLabel = NodePath("Name")
+
+[node name="Value" type="Label" parent="." unique_id=891311664]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -17.5
+offset_right = -2.0
+offset_bottom = -3.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "256"
+label_settings = SubResource("LabelSettings_f4ic3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="." unique_id=1458399084]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -24.5
+offset_right = 118.0
+offset_bottom = -2.5
+grow_vertical = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_d0pb3")
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1992971735 node_paths=PackedStringArray("targetSlider")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = -33.5
+offset_bottom = -1.5
+theme = ExtResource("7_rw1pw")
+text = "256"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("9_4q3wk")
+targetSlider = NodePath("..")
